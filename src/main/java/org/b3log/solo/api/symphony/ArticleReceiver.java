@@ -108,11 +108,9 @@ public class ArticleReceiver {
      * @param context  the specified http request context
      * @throws Exception exception
      */
-    @RequestProcessing(value = "/apis/symphony/article", method = HTTPRequestMethod.POST)
+    /*@RequestProcessing(value = "/apis/symphony/article", method = HTTPRequestMethod.POST)
     public void addArticle(final HttpServletRequest request, final HttpServletResponse response, final HTTPRequestContext context)
             throws Exception {
-        //disable this 
-        return;
         final JSONRenderer renderer = new JSONRenderer();
 
         context.setRenderer(renderer);
@@ -168,7 +166,7 @@ public class ArticleReceiver {
             renderer.setJSONObject(jsonObject);
             jsonObject.put(Keys.MSG, e.getMessage());
         }
-    }
+    }*/
 
     /**
      * Updates an article with the specified request.
@@ -195,11 +193,9 @@ public class ArticleReceiver {
      * @param context  the specified http request context
      * @throws Exception exception
      */
-    @RequestProcessing(value = "/apis/symphony/article", method = HTTPRequestMethod.PUT)
+    /*@RequestProcessing(value = "/apis/symphony/article", method = HTTPRequestMethod.PUT)
     public void updateArticle(final HttpServletRequest request, final HttpServletResponse response, final HTTPRequestContext context)
             throws Exception {
-        //disable this 
-        return;
         final JSONRenderer renderer = new JSONRenderer();
 
         context.setRenderer(renderer);
@@ -259,5 +255,5 @@ public class ArticleReceiver {
             renderer.setJSONObject(jsonObject);
             jsonObject.put(Keys.MSG, e.getMessage());
         }
-    }
+    }*/
 }
