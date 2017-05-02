@@ -285,8 +285,10 @@ public final class SoloServletListener extends AbstractServletListener {
             eventManager.registerListener(new ViewLoadEventHandler());
 
             // Sync
-            eventManager.registerListener(new ArticleSender());
-            eventManager.registerListener(new ArticleUpdater());
+            if (SoloServletListener.B3LOG_SYNC_ARTICLE_FLAG) {
+                eventManager.registerListener(new ArticleSender());
+                eventManager.registerListener(new ArticleUpdater());
+            }
             eventManager.registerListener(new CommentSender());
         } catch (final Exception e) {
             LOGGER.log(Level.ERROR, "Register event processors error", e);
