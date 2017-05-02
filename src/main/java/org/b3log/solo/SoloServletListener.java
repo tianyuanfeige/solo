@@ -12,6 +12,13 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ * 
+ * modify notice 
+ * 
+ * add flag B3LOG_SYNC_USER_FLAG ,indicate whether sync user info
+ * to(from) b3log or not
+ * add flag B3LOG_SYNC_ARTICLE_FLAG ,indicate whether sync article info
+ * to(from) b3log or not
  */
 package org.b3log.solo;
 
@@ -97,6 +104,16 @@ public final class SoloServletListener extends AbstractServletListener {
     public static final String FAVICON_API;
 
     /**
+     * B3log user sync flag.
+     */
+    public static final boolean B3LOG_SYNC_USER_FLAG;
+
+    /**
+     * B3log article sync flag.
+     */
+    public static final boolean B3LOG_SYNC_ARTICLE_FLAG;
+
+    /**
      * Bean manager.
      */
     private LatkeBeanManager beanManager;
@@ -106,6 +123,8 @@ public final class SoloServletListener extends AbstractServletListener {
 
         B3LOG_RHYTHM_SERVE_PATH = b3log.getString("rhythm.servePath");
         B3LOG_SYMPHONY_SERVE_PATH = b3log.getString("symphony.servePath");
+        B3LOG_SYNC_USER_FLAG = Boolean.valueOf(b3log.getString("sync.user.flag"));
+        B3LOG_SYNC_ARTICLE_FLAG = Boolean.valueOf(b3log.getString("sync.article.flag"));
         FAVICON_API = b3log.getString("faviconAPI");
     }
 
@@ -266,9 +285,9 @@ public final class SoloServletListener extends AbstractServletListener {
             eventManager.registerListener(new ViewLoadEventHandler());
 
             // Sync
-//            eventManager.registerListener(new ArticleSender());
-//            eventManager.registerListener(new ArticleUpdater());
-//            eventManager.registerListener(new CommentSender());
+            eventManager.registerListener(new ArticleSender());
+            eventManager.registerListener(new ArticleUpdater());
+            eventManager.registerListener(new CommentSender());
         } catch (final Exception e) {
             LOGGER.log(Level.ERROR, "Register event processors error", e);
             throw new IllegalStateException(e);
