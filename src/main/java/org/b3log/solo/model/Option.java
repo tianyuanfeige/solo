@@ -77,6 +77,11 @@ public final class Option {
     public static final String ID_C_QINIU_BUCKET = "qiniuBucket";
 
     /**
+     * Key of Qiniu style.
+     */
+    public static final String ID_C_QINIU_STYLE = "qiniuStyle";
+    
+    /**
      * Key of blog title.
      */
     public static final String ID_C_BLOG_TITLE = "blogTitle";

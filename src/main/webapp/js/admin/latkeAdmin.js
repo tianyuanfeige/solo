@@ -725,8 +725,13 @@ Util.initUploadFile = function (obj) {
                     var cursor = obj.editor.getCursor();
 
                     if (isImg) {
-                        obj.editor.replaceRange('![' + filename + '](' + obj.qiniuDomain + '/' + qiniuKey + ') \n\n',
-                                CodeMirror.Pos(cursor.line, cursor.ch - obj.uploadingLabel.length), cursor);
+                    	if(qiniu.qiniuStyle && qiniu.qiniuStyle!=""){
+                    		obj.editor.replaceRange('![' + filename + '](' + obj.qiniuDomain + '/' + qiniuKey + qiniu.qiniuStyle + ') \n\n',
+                                    CodeMirror.Pos(cursor.line, cursor.ch - obj.uploadingLabel.length), cursor);
+                    	}else{
+                    		obj.editor.replaceRange('![' + filename + '](' + obj.qiniuDomain + '/' + qiniuKey + ') \n\n',
+                                    CodeMirror.Pos(cursor.line, cursor.ch - obj.uploadingLabel.length), cursor);
+                    	}
                     } else {
                         obj.editor.replaceRange('[' + filename + '](' + obj.qiniuDomain + '/' + qiniuKey + ') \n\n',
                                 CodeMirror.Pos(cursor.line, cursor.ch - obj.uploadingLabel.length), cursor);
@@ -844,7 +849,8 @@ admin.editors.CodeMirror = {
             "qiniuUploadToken": qiniu.qiniuUploadToken,
             "editor": commentEditor.codemirror,
             "uploadingLabel": 'uploading...',
-            "qiniuDomain": '//' + qiniu.qiniuDomain
+            "qiniuDomain": '//' + qiniu.qiniuDomain,
+            "qiniuStyle": qiniu.qiniuStyle
         });
 
         this[conf.id] = commentEditor.codemirror;
@@ -1082,9 +1088,13 @@ admin.article = {
 
                     return;
                 }
-
-                $('#' + id).after('<div>![' + data.files[0].name + '](http://'
-                        + qiniu.qiniuDomain + qiniuKey + ')</div>');
+                if(qiniu.qiniuStyle && qiniu.qiniuStyle!=""){
+                	 $('#' + id).after('<div>![' + data.files[0].name + '](http://'
+                             + qiniu.qiniuDomain + qiniuKey + qiniu.qiniuStyle + ')</div>');
+                }else{
+                	 $('#' + id).after('<div>![' + data.files[0].name + '](http://'
+                             + qiniu.qiniuDomain + qiniuKey + ')</div>');
+                }
             },
             fail: function (e, data) {
                 $('#' + id + ' span').text("Upload error, please check Qiniu configurations [" + data.errorThrown + "]");
@@ -3157,6 +3167,7 @@ admin.preference = {
                 $("#qiniuSecretKey").val(result.qiniu.qiniuSecretKey);
                 $("#qiniuDomain").val(result.qiniu.qiniuDomain);
                 $("#qiniuBucket").val(result.qiniu.qiniuBucket);
+                $("#qiniuStyle").val(result.qiniu.qiniuStyle);
             }
         });
     },
@@ -3301,7 +3312,8 @@ admin.preference = {
             "qiniuAccessKey": $("#qiniuAccessKey").val(),
             "qiniuSecretKey": $("#qiniuSecretKey").val(),
             "qiniuDomain": $("#qiniuDomain").val(),
-            "qiniuBucket": $("#qiniuBucket").val()
+            "qiniuBucket": $("#qiniuBucket").val(),
+            "qiniuStyle": $("#qiniuStyle").val()
         };
 
         $.ajax({

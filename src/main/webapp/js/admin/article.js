@@ -66,9 +66,13 @@ admin.article = {
 
                     return;
                 }
-
-                $('#' + id).after('<div>![' + data.files[0].name + '](http://'
-                        + qiniu.qiniuDomain + qiniuKey + ')</div>');
+                if(qiniu.qiniuStyle && qiniu.qiniuStyle!=""){
+                	$('#' + id).after('<div>![' + data.files[0].name + '](http://'
+                            + qiniu.qiniuDomain + qiniuKey +qiniu.qiniuStyle+')</div>');
+                }else{
+                	$('#' + id).after('<div>![' + data.files[0].name + '](http://'
+                            + qiniu.qiniuDomain + qiniuKey + ')</div>');
+                }
             },
             fail: function (e, data) {
                 $('#' + id + ' span').text("Upload error, please check Qiniu configurations [" + data.errorThrown + "]");

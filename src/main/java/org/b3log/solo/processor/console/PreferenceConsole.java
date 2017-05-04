@@ -463,6 +463,7 @@ public class PreferenceConsole {
      *     "qiniuSecretKey": "",
      *     "qiniuDomain": "",
      *     "qiniuBucket": ""
+     *     "qiniuStyle": ""
      * }
      * </pre>
      * </p>
@@ -517,6 +518,7 @@ public class PreferenceConsole {
      *     "qiniuSecretKey": "",
      *     "qiniuDomain": "",
      *     "qiniuBucket": ""
+     *     "qiniuStyle": ""
      * }, see {@link org.b3log.solo.model.Option} for more details
      * </pre>
      *
@@ -543,7 +545,8 @@ public class PreferenceConsole {
             final String secretKey = requestJSONObject.optString(Option.ID_C_QINIU_SECRET_KEY).trim();
             String domain = requestJSONObject.optString(Option.ID_C_QINIU_DOMAIN).trim();
             final String bucket = requestJSONObject.optString(Option.ID_C_QINIU_BUCKET).trim();
-
+            final String style = requestJSONObject.optString(Option.ID_C_QINIU_STYLE).trim();
+            
             final JSONObject ret = new JSONObject();
             renderer.setJSONObject(ret);
 
@@ -567,12 +570,17 @@ public class PreferenceConsole {
             bucketOpt.put(Keys.OBJECT_ID, Option.ID_C_QINIU_BUCKET);
             bucketOpt.put(Option.OPTION_CATEGORY, Option.CATEGORY_C_QINIU);
             bucketOpt.put(Option.OPTION_VALUE, bucket);
-
+            final JSONObject styleOpt = new JSONObject();
+            styleOpt.put(Keys.OBJECT_ID, Option.ID_C_QINIU_STYLE);
+            styleOpt.put(Option.OPTION_CATEGORY, Option.CATEGORY_C_QINIU);
+            styleOpt.put(Option.OPTION_VALUE, style);
+            
             optionMgmtService.addOrUpdateOption(accessKeyOpt);
             optionMgmtService.addOrUpdateOption(secretKeyOpt);
             optionMgmtService.addOrUpdateOption(domainOpt);
             optionMgmtService.addOrUpdateOption(bucketOpt);
-
+            optionMgmtService.addOrUpdateOption(styleOpt);
+            
             ret.put(Keys.STATUS_CODE, true);
             ret.put(Keys.MSG, langPropsService.get("updateSuccLabel"));
         } catch (final ServiceException e) {

@@ -405,6 +405,14 @@
                         <input id="qiniuBucket" type="text"/>
                     </td>
                 </tr>
+                <tr>
+                    <th>
+                        <label for="qiniuStyle">${style1Label}</label>
+                    </th>
+                    <td>
+                        <input id="qiniuStyle" type="text"/>
+                    </td>
+                </tr>
             </tbody>
         </table>
     </div>

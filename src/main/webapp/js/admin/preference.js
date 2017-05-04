@@ -125,6 +125,7 @@ admin.preference = {
                 $("#qiniuSecretKey").val(result.qiniu.qiniuSecretKey);
                 $("#qiniuDomain").val(result.qiniu.qiniuDomain);
                 $("#qiniuBucket").val(result.qiniu.qiniuBucket);
+                $("#qiniuStyle").val(result.qiniu.qiniuStyle);
             }
         });
     },
@@ -269,7 +270,8 @@ admin.preference = {
             "qiniuAccessKey": $("#qiniuAccessKey").val(),
             "qiniuSecretKey": $("#qiniuSecretKey").val(),
             "qiniuDomain": $("#qiniuDomain").val(),
-            "qiniuBucket": $("#qiniuBucket").val()
+            "qiniuBucket": $("#qiniuBucket").val(),
+            "qiniuStyle": $("#qiniuStyle").val()
         };
 
         $.ajax({

@@ -131,8 +131,13 @@ Util.initUploadFile = function (obj) {
                     var cursor = obj.editor.getCursor();
 
                     if (isImg) {
-                        obj.editor.replaceRange('![' + filename + '](' + obj.qiniuDomain + '/' + qiniuKey + ') \n\n',
-                                CodeMirror.Pos(cursor.line, cursor.ch - obj.uploadingLabel.length), cursor);
+                    	if(qiniu.qiniuStyle && qiniu.qiniuStyle!=""){
+                    		obj.editor.replaceRange('![' + filename + '](' + obj.qiniuDomain + '/' + qiniuKey + qiniu.qiniuStyle+ ') \n\n',
+                                    CodeMirror.Pos(cursor.line, cursor.ch - obj.uploadingLabel.length), cursor);
+                    	}else{
+                    		obj.editor.replaceRange('![' + filename + '](' + obj.qiniuDomain + '/' + qiniuKey + ') \n\n',
+                                    CodeMirror.Pos(cursor.line, cursor.ch - obj.uploadingLabel.length), cursor);
+                    	}
                     } else {
                         obj.editor.replaceRange('[' + filename + '](' + obj.qiniuDomain + '/' + qiniuKey + ') \n\n',
                                 CodeMirror.Pos(cursor.line, cursor.ch - obj.uploadingLabel.length), cursor);

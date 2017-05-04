@@ -157,6 +157,7 @@ public class AdminConsole {
 
             dataModel.put(Option.ID_C_QINIU_DOMAIN, "");
             dataModel.put("qiniuUploadToken", "");
+            dataModel.put(Option.ID_C_QINIU_STYLE, "");
 
             if (null != qiniu && StringUtils.isNotBlank(qiniu.optString(Option.ID_C_QINIU_ACCESS_KEY))
                     && StringUtils.isNotBlank(qiniu.optString(Option.ID_C_QINIU_SECRET_KEY))
@@ -170,6 +171,7 @@ public class AdminConsole {
                             null, 3600 * 6, null);
                     dataModel.put("qiniuUploadToken", uploadToken);
                     dataModel.put(Option.ID_C_QINIU_DOMAIN, qiniu.optString(Option.ID_C_QINIU_DOMAIN));
+                    dataModel.put(Option.ID_C_QINIU_STYLE, qiniu.optString(Option.ID_C_QINIU_STYLE));
                 } catch (final Exception e) {
                     LOGGER.log(Level.ERROR, "Qiniu settings error", e);
                 }
