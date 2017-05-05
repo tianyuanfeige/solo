@@ -358,7 +358,7 @@
                 </executions>
             </plugin>
 
-           <!--  <plugin>
+             <!-- <plugin>
                 <groupId>org.b3log</groupId>
                 <artifactId>maven-min-plugin</artifactId>
                 <version>${maven-min-plugin.version}</version>
@@ -366,7 +366,7 @@
 
                 <configuration>
                     <suffix>.min</suffix>
-                    <!-- Common#MINI_POSTFIX_VALUE -->
+                    Common#MINI_POSTFIX_VALUE
                     <adminJSs>
                         <param>admin.js</param>
                         <param>editor.js</param>
@@ -398,16 +398,14 @@
                     <jsTargetDir>src/main/webapp/js</jsTargetDir>
                 </configuration>
                 <executions>
-                    <!--
                     <execution>
                         <phase>process-resources</phase>
                         <goals>
                             <goal>min</goal>
                         </goals>
                     </execution>
-                    -->
                 </executions>
-            </plugin> -->
+            </plugin>  -->
 
             <plugin>
                 <groupId>org.eclipse.jetty</groupId>
