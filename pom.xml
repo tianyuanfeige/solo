@@ -358,7 +358,7 @@
                 </executions>
             </plugin>
 
-            <plugin>
+           <!--  <plugin>
                 <groupId>org.b3log</groupId>
                 <artifactId>maven-min-plugin</artifactId>
                 <version>${maven-min-plugin.version}</version>
@@ -407,7 +407,7 @@
                     </execution>
                     -->
                 </executions>
-            </plugin>
+            </plugin> -->
 
             <plugin>
                 <groupId>org.eclipse.jetty</groupId>
@@ -425,7 +425,35 @@
                     <scanIntervalSeconds>1</scanIntervalSeconds>
                 </configuration>
             </plugin>
-
+			
+			<plugin>
+		        <groupId>net.sf.alchim</groupId>
+		        <artifactId>yuicompressor-maven-plugin</artifactId>
+		        <version>0.7.1</version>
+		        <executions>
+		          <execution>
+		          	<phase>package</phase>
+		            <goals>
+		              <goal>compress</goal>
+		            </goals>
+		          </execution>
+		        </executions>     
+		        <configuration>
+		        	<suffix>.min</suffix>
+		        	<encoding>UTF-8</encoding>
+			      	<!-- 忽略 js 错误警告 -->
+			        <jswarn>false</jswarn>
+			        <!-- 在指定的列号后插入新行 -->
+        			<linebreakpos>-1</linebreakpos>
+			        <!-- 若存在已压缩的文件，会先对比源文件是否有改动。有改动便压缩，无改动就不压缩 -->
+        			<force>true</force>
+		        	<excludes>
+			            <exclude>**/*.css</exclude>
+			            <exclude>**/lib/**/*.js</exclude>
+			            <exclude>**/*min.js</exclude>
+          			</excludes>
+		        </configuration>   
+		     </plugin>
         </plugins>
 
         <finalName>solo</finalName>

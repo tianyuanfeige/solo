@@ -6,7 +6,9 @@
     
     var qiniu = {
         "qiniuUploadToken": "${qiniuUploadToken}",
-        "qiniuDomain": "${qiniuDomain}"
+        "qiniuDomain": "${qiniuDomain}",
+        "qiniuStyle": "${qiniuStyle}"
+        
     };
     
     var Label = {
