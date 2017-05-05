@@ -448,7 +448,9 @@
 		        	<excludes>
 			            <exclude>**/*.css</exclude>
 			            <exclude>**/lib/**/*.js</exclude>
-			            <exclude>**/*min.js</exclude>
+			            <exclude>**/plugins/**/*.js</exclude>
+			            <exclude>**/skins/**/*.js</exclude>
+			            <exclude>**/*.min.js</exclude>
           			</excludes>
 		        </configuration>   
 		     </plugin>
